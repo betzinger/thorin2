@@ -194,3 +194,15 @@ add_thorin_plugin(refly
         compile
     INSTALL
 )
+
+add_thorin_plugin(typebug
+    SOURCES
+        typebug/typebug.cpp
+        typebug/typebug.h
+    DEPENDS
+        core
+        mem
+        affine
+        direct
+    INSTALL
+)

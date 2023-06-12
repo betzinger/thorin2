@@ -1,0 +1,34 @@
+.plugin core;
+.plugin math;
+
+.plugin affine;
+.plugin direct;
+
+
+
+//================================================================================
+// Numeric Types
+//================================================================================
+
+.Sigma %typebug.Num: □, 3 = [
+    T: *, _0: T, _1: T,
+  
+];
+
+
+.let %typebug.TF32 = (
+    %math.F32, 0x00000000:%math.F32, 0x3f800000:%math.F32,
+);
+
+.Sigma %typebug.Shp: □, 3 = [n: .Nat, D: «n; .Nat», N: %typebug.Num];
+
+.lam %typebug.shp.n [S: %typebug.Shp] [N: %typebug.Num]: %typebug.Shp = (S#0_3, S#1_3, N);
+// TODO: Add more shape mappers
+
+.ax %typebug.Tsr: %typebug.Shp -> *;
+
+//----------------------------------------------------------------
+// Broadcast
+//----------------------------------------------------------------
+
+.ax %typebug.broadcast: Π [S: %typebug.Shp, T: %typebug.Shp] [X: %typebug.Tsr S] -> %typebug.Tsr (%typebug.shp.n T S#N);
